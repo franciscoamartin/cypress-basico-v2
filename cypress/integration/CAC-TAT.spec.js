@@ -38,7 +38,7 @@ describe("Central de Atendimento ao cliente TAT", function () {
     cy.get("#firstName").type("John");
     cy.get("#lastName").type("Lennon");
     cy.get("#email").type("john@mail.com");
-    cy.get("#phone-checkbox").click();
+    cy.get("#phone-checkbox").check();
     cy.get("#open-text-area").type("teste");
     cy.contains("button", "Enviar").click();
 
@@ -103,5 +103,14 @@ describe("Central de Atendimento ao cliente TAT", function () {
         cy.wrap($radio).check();
         cy.wrap($radio).should("be.checked");
       });
+  });
+
+  it("marca ambos checkboxs e depois desmarca o último", function () {
+    cy.get('input[type="checkbox"]')
+      .check()
+      .should("be.checked")
+      .last()
+      .uncheck()
+      .should("not.be.checked");
   });
 });
